@@ -1,23 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {w3cwebsocket} from "websocket";
-import {Link} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { w3cwebsocket } from 'websocket';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-
 
 const Register = () => {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
+    const [notification, setNotification] = useState('');
+    const [userTouched, setUserTouched] = useState(false);
+    const [passTouched, setPassTouched] = useState(false);
 
     const handleRegister = () => {
-        // Tạo một đối tượng websocket
+        if (user.trim() === '' || pass.trim() === '') {
+            return;
+        }
         const ws = new w3cwebsocket('ws://140.238.54.136:8080/chat/chat');
-        // Hàm sử lý sự kiện gửi yêu cầu đăng ký
+
         ws.onopen = () => {
-            // Tạo dữ liệu yêu cầu đăng ký
             const requestData = {
-                action: "onchat",
+                action: 'onchat',
                 data: {
-                    event: "REGISTER",
+                    event: 'REGISTER',
                     data: {
                         user: user,
                         pass: pass,
@@ -25,41 +28,55 @@ const Register = () => {
                 },
             };
 
-            // Gửi yêu cầu đăng ký thông qua websocket
             ws.send(JSON.stringify(requestData));
         };
 
-        // Đăng ký sự kiện nhận dữ liệu từ server websocket
         ws.onmessage = (event) => {
-            // Xử lý dữ liệu nhận được từ server
-            const responeData = JSON.parse(event.data);
-            console.log(responeData); // In ra dữ liệu nhận được từ server
+            const responseData = JSON.parse(event.data);
+            console.log(responseData);
+
+            if (responseData.status === 'success') {
+                setNotification('Đăng ký thành công!');
+            } else if (responseData.status === 'error') {
+                setNotification('Tài khoản đã tồn tại!');
+            }
         };
 
-        // Đóng kết nối Websocket khi conponent unmount
         return () => {
             ws.close();
         };
     };
 
-    // Sử dụng hook useEffect để đóng kết nối Websocket khi component unmount
-    useEffect(() =>{
-        return handleRegister;
-    },[]);
+    useEffect(() => {
+        if (notification !== '') {
+            const timer = setTimeout(() => {
+                setNotification('');
+            }, 3000);
 
-    // Hàm xử lý sự kiện submit form
+            return () => {
+                clearTimeout(timer);
+            };
+        }
+    }, [notification]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Gọi hàm handleRegister để thực hiện việc đăng ký thông qua Websocket
         handleRegister();
-    }
+    };
+    const handleUserBlur = () => {
+        setUserTouched(true);
+    };
+
+    const handlePassBlur = () => {
+        setPassTouched(true);
+    };
     return (
         <div className="row">
-            <div  className="offset-lg-3 col-lg-6">
+            <div className="offset-lg-3 col-lg-6">
                 <form className="container" onSubmit={handleSubmit}>
                     <div className="card">
                         <div className="card-header">
-                            <h2>Register</h2>
+                            <h2>Đăng ký</h2>
                         </div>
                         <div className="card-body">
                             <div className="form-group">
@@ -68,7 +85,11 @@ const Register = () => {
                                     className="form-control"
                                     value={user}
                                     onChange={(e) => setUser(e.target.value)}
+                                    onBlur={handleUserBlur}
                                 />
+                                {userTouched && user.trim() === '' && (
+                                    <p className="text-danger">Vui lòng nhập tên đăng nhập</p>
+                                )}
                             </div>
                             <div className="form-group">
                                 <label>Mật khẩu</label>
@@ -77,21 +98,27 @@ const Register = () => {
                                     className="form-control"
                                     value={pass}
                                     onChange={(e) => setPass(e.target.value)}
+                                    onBlur={handlePassBlur}
                                 />
+                                {passTouched && pass.trim() === '' && (
+                                    <p className="text-danger">Vui lòng nhập mật khẩu</p>
+                                )}
                             </div>
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary">
                                 Đăng ký
                             </button>
-                            <Link to="/" className="btn btn-link">Trở lại</Link>
-
+                            <Link to="/" className="btn btn-link">
+                                Trở lại
+                            </Link>
                         </div>
                     </div>
                 </form>
-
+                {notification && (
+                    <div className="alert alert-info mt-3">{notification}</div>
+                )}
             </div>
-
         </div>
     );
 };
