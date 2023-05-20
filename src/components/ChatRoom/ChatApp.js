@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './ChatApp.css';
+import { createBrowserHistory } from 'history';
+// import UserList from "../UserList/UserList";
+// import ChatBox from "../ChatBox/ChatBox";
+
 
 const ChatApp = () => {
     const [selectedRoom, setSelectedRoom] = useState(null);
@@ -10,6 +14,17 @@ const ChatApp = () => {
         { id: 2, name: 'Room 2' },
         { id: 3, name: 'Room 3' },
     ];
+    const history = createBrowserHistory();
+    const handleLogout = () => {
+        // Gửi yêu cầu đến server websocket
+        const requestData = {
+            action: "onchat",
+            data: {
+                event: "LOGOUT",
+            },
+        };
+        history.push('/');
+    };
 
     const handleRoomClick = (room) => {
         setSelectedRoom(room);
@@ -34,6 +49,9 @@ const ChatApp = () => {
 
     return (
         <div className="chat-container">
+            <button type="submit" className="btn btn-primary" onClick={handleLogout}>
+                Đăng xuất
+            </button>
             <div className="room-list">
                 {rooms.map((room) => (
                     <div
@@ -66,6 +84,7 @@ const ChatApp = () => {
                     />
                     <button onClick={handleSendMessage}>Send</button>
                 </div>
+
             </div>
         </div>
     );
