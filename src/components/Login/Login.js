@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { w3cwebsocket } from 'websocket';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {w3cwebsocket} from 'websocket';
+import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import {createBrowserHistory} from 'history';
 
 const Login = () => {
     const [user, setUser] = useState('');
@@ -10,6 +11,7 @@ const Login = () => {
     const [userTouched, setUserTouched] = useState(false);
     const [passTouched, setPassTouched] = useState(false);
     const [loginError, setLoginError] = useState(false);
+    const history = createBrowserHistory();
 
     const handleLogin = () => {
         if (user.trim() === '' || pass.trim() === '') {
@@ -38,6 +40,9 @@ const Login = () => {
             if (responseData.event === 'LOGIN' && responseData.status === 'success') {
                 setLoginSuccess(true);
                 setLoginError(false);
+                history.push('/chat');
+                window.location.href = '/chat'
+                sessionStorage.setItem('relogin_code', responseData.data.RE_LOGIN_CODE);
             } else {
                 setLoginSuccess(false);
                 setLoginError(true);
@@ -51,7 +56,11 @@ const Login = () => {
     };
 
     useEffect(() => {
-        return handleLogin;
+        if (loginSuccess) {
+            // Lưu trữ thông tin đăng nhập
+            sessionStorage.setItem('user', user);
+            sessionStorage.setItem('pass', pass);
+        }
     }, []);
 
     const handleSubmit = (event) => {
@@ -102,11 +111,12 @@ const Login = () => {
                                 )}
                             </div>
                             {loginError && (
-                                <p className="text-danger">Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản và mật khẩu.</p>
+                                <p className="text-danger">Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản
+                                    và mật khẩu.</p>
                             )}
-                            {loginSuccess && (
-                                <p className="text-success">Đăng nhập thành công!</p>
-                            )}
+                            {/*{loginSuccess && (*/}
+                            {/*    <p className="text-success">Đăng nhập thành công!</p>*/}
+                            {/*)}*/}
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary">
