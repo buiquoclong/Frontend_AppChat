@@ -6,31 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8e436c2c-ce72-4725-b16a-37b2bc3fd31f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.idea/appchat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/components/ListUser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/pages/Homepage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appchat/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InputMess.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputMess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/InputMess.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/InputMess.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -87,7 +67,8 @@
       <workItem from="1686588170709" duration="1942000" />
       <workItem from="1686640805564" duration="19596000" />
       <workItem from="1686708255332" duration="27575000" />
-      <workItem from="1686753826426" duration="4197000" />
+      <workItem from="1686753826426" duration="6039000" />
+      <workItem from="1686796577437" duration="12988000" />
     </task>
     <servers />
   </component>
