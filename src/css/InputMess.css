@@ -1,6 +1,7 @@
-.icon{
+.icon {
     cursor: pointer;
 }
-.no-outline{
-    outline: none;
+
+.no-outline:focus {
+    outline: 0;
 }
