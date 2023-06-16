@@ -24,6 +24,8 @@ export default function Homepage() {
 
 
     function handleSendMessage(message) {
+        let messEncode = encodeURI(message);
+        let  mes = messEncode.replace(/%20/g," ");
         const chatData = {
             action: 'onchat',
             data: {
@@ -31,7 +33,7 @@ export default function Homepage() {
                 data: {
                     type: typeSend, // Loại tin nhắn (data.chatData.type)
                     to: selectedUser, // get room chat mess (data.chatData.name)
-                    mes: message, // Nội dung tin nhắn từ người dùng nhập vào
+                    mes: mes, // Nội dung tin nhắn từ người dùng nhập vào
                 }
             },
         };
