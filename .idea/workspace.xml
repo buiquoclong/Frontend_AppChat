@@ -8,9 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ChatBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChatBox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/InputMess.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputMess.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Room.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/InputMess.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/InputMess.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Room.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Room.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Homepage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Homepage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,21 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Laptrinh/Front_End/Frontend_Appchat&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;Sass&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/BuiQuocLong/Downloads/app/AppChatReact",
+    "list.type.of.created.stylesheet": "Sass",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Laptrinh\Front_End\Frontend_Appchat\demoappchat\AppChat\src\componemts" />
@@ -73,7 +72,7 @@
       <workItem from="1686796577437" duration="15302000" />
       <workItem from="1686836743499" duration="12031000" />
       <workItem from="1686881666121" duration="15132000" />
-      <workItem from="1686919830770" duration="9567000" />
+      <workItem from="1686919830770" duration="12757000" />
     </task>
     <servers />
   </component>

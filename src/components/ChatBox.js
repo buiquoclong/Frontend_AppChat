@@ -107,7 +107,7 @@ export default function ChatBox({chatMess, groupName, userType}) {
                                                     </a>
                                                 ) : (
                                                     <>
-                                                        {mess.mes}
+                                                        {decodeURIComponent(mess.mes)}
                                                     </>
                                                 )}
                                             </p>
@@ -153,7 +153,7 @@ export default function ChatBox({chatMess, groupName, userType}) {
                                                         {mess.mes}
                                                     </a>
                                                 ) : (
-                                                    mess.mes
+                                                    decodeURIComponent(mess.mes)
                                                 )}
                                             </p>
                                         </div>

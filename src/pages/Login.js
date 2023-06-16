@@ -62,6 +62,7 @@ const Login = () => {
             if (response.status === 'success' && response.event === 'GET_USER_LIST') {
                 const users = response.data;
                 setUserList(users);
+
                 history.push('/homepage', {userList: users, setUserList: setUserList});
 
 
@@ -91,8 +92,7 @@ const Login = () => {
                 }
                 if (responseData && responseData.status === "success") {
                     // Đăng nhập thành công
-                    // setIsLoginSuccess(true);
-                    // Lưu trữ thông tin đăng nhập, ví dụ: lưu trữ token
+                    // Lưu trữ re_login_code
                     sessionStorage.setItem('re_login_code', responseData.data["RE_LOGIN_CODE"]);
                 }
             };
