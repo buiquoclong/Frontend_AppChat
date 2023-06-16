@@ -1,0 +1,11 @@
+.selected-user {
+    background-color: #d3e6f9;
+}
+
+.user_list {
+    padding: 0px;
+}
+
+.card {
+    overflow: hidden;
+}

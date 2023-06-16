@@ -1,0 +1,56 @@
+.card-body {
+    padding: 0px;
+}
+
+.homepage-container {
+    display: flex;
+}
+
+.homepage-content {
+    display: flex;
+    flex-grow: 1;
+}
+
+.userlist-container {
+    flex: 0 0 auto;
+    width: 432px;
+    background-color: #fff;
+}
+
+.chat-container {
+    flex-grow: 1;
+    background-color: #eee;
+}
+
+.create_room {
+    border-bottom: 2px solid #c6c6c6;
+}
+
+.userlist-container {
+    border-right: 2px solid #c6c6c6;
+}
+
+.nothing_chat {
+    font-family: "Times";
+    width: 800px;
+    margin: auto auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.nothing_chat h1 {
+
+    text-align: center;
+    color: #333333;
+}
+
+.nothing_chat p {
+    text-align: center;
+}
+
+.nothing_chat .img_nothing_chat {
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+}
