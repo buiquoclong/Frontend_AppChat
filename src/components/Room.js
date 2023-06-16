@@ -1,8 +1,9 @@
 import "../css/Room.css"
 import React, {useState, useEffect} from "react";
 
-export default function Room({handleJoinRoom,handleCreateRoom}) {
+export default function Room({handleJoinRoom, handleCreateRoom}) {
     const [roomName, setRoomName] = useState('');
+
     function handleChange(event) {
         setRoomName(event.target.value); // Cập nhật giá trị từ thẻ input vào state
     }
@@ -14,6 +15,7 @@ export default function Room({handleJoinRoom,handleCreateRoom}) {
         }
 
     }
+
     function JoinRoomClick() {
         if (roomName !== "") {
             handleJoinRoom(roomName); // Truyền giá trị message vào hàm handleSendMessage
