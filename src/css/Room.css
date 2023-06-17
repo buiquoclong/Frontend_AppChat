@@ -4,7 +4,7 @@
 
 }
 
-.join, .create {
+.join, .create, .search {
     cursor: pointer;
     font-size: 30px;
     padding-right: 10px;

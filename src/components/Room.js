@@ -1,13 +1,20 @@
 import "../css/Room.css"
 import React, {useState, useEffect} from "react";
 
-export default function Room({handleJoinRoom, handleCreateRoom}) {
+export default function Room({handleJoinRoom, handleCreateRoom, handleSearchRoom }) {
     const [roomName, setRoomName] = useState('');
 
     function handleChange(event) {
         setRoomName(event.target.value); // Cập nhật giá trị từ thẻ input vào state
     }
 
+    function SearchRoomClick() {
+        if (roomName !== "") {
+            handleSearchRoom(roomName); // Truyền giá trị message vào hàm handleSendMessage
+            setRoomName('');
+        }
+
+    }
     function CreateRoomClick() {
         if (roomName !== "") {
             handleCreateRoom(roomName); // Truyền giá trị message vào hàm handleSendMessage
@@ -37,6 +44,7 @@ export default function Room({handleJoinRoom, handleCreateRoom}) {
                 />
             </div>
             <div className='col-auto'>
+                <i className="fa-solid fa-magnifying-glass search" onClick={SearchRoomClick}></i>
                 <i className="fa fa-users-line join" onClick={JoinRoomClick}></i>
                 <i className='fas fa-plus-square create' onClick={CreateRoomClick}/>
             </div>

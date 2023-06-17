@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 
-import UserList from "../components/UserList";
+import ListUser from "../components/ListUser";
 import ChatBox from "../components/ChatBox";
 import Navbar from "../components/Navbar";
 import InputMess from "../components/InputMess";
@@ -13,13 +13,14 @@ export default function Homepage() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [userType, setUserType] = useState(null);
     const [typeSend, setTypeSend] = useState(null);
-    const [userList, setUserList] = useState([]);
+    const [listUser, setListUser] = useState([]);
     const [chatMess, setChatMess] = useState([]);
-    const [error, setError] = useState([]);
     const [groupName, setGroupName] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isChatVisible, setIsChatVisible] = useState(true);
+    const [roomName, setRoomName] = useState("");
+    const [listUserChatRoom, setListUserChatRoom] = useState([]);
     const history = useHistory();
 
 
@@ -192,6 +193,12 @@ export default function Homepage() {
                 if (response.status === 'success' && response.event === 'GET_ROOM_CHAT_MES') {
                     const chatMess = response.data.chatData;
                     setChatMess(chatMess);
+                    let listUser = [];
+                    if (response.data) {
+                        listUser = response.data.userList;
+                    }
+                    setListUserChatRoom(listUser)
+                    console.log(listUser);
                     console.log(chatMess);
                 }
                 if (response.status === 'success' && response.event === 'GET_PEOPLE_CHAT_MES') {
@@ -211,10 +218,13 @@ export default function Homepage() {
                 }
                 if (response.status === 'success' && response.event === 'GET_USER_LIST') {
                     const users = response.data;
-                    setUserList(users);
+                    setListUser(users);
                 }
                 if (response.status === 'success' && response.event === 'JOIN_ROOM') {
                     const receivedRoomName = response.data;
+                }
+                if (response.status === 'error' && response.event === 'JOIN_ROOM') {
+                    alert(response.mes)
                 }
             }
 
@@ -243,6 +253,7 @@ export default function Homepage() {
     const handleGoBack = () => {
         setIsChatVisible(false);
     };
+
     return (
         <>
             <div className="homepage-container">
@@ -260,6 +271,7 @@ export default function Homepage() {
                                         chatMess={chatMess}
                                         groupName={groupName}
                                         userType={userType}
+                                        listUserChatRoom ={listUserChatRoom}
                                     />
                                     <InputMess
                                         handleSendMessage={handleSendMessage}
@@ -275,10 +287,11 @@ export default function Homepage() {
                                                 handleJoinRoom={handleJoinRoom}
                                             />
                                         </div>
-                                        <UserList
-                                            userList={userList}
+                                        <ListUser
+                                            listUser={listUser}
                                             handleUserClick={handleUserClick}
                                             selectedUser={selectedUser}
+                                            roomName = {roomName}
                                         />
                                     </div>
                                 </div>
@@ -292,8 +305,8 @@ export default function Homepage() {
                                             handleJoinRoom={handleJoinRoom}
                                         />
                                     </div>
-                                    <UserList
-                                        userList={userList}
+                                    <ListUser
+                                        listUser={listUser}
                                         handleUserClick={handleUserClick}
                                         selectedUser={selectedUser}
                                     />
@@ -312,8 +325,8 @@ export default function Homepage() {
                                         handleJoinRoom={handleJoinRoom}
                                     />
                                 </div>
-                                <UserList
-                                    userList={userList}
+                                <ListUser
+                                    listUser={listUser}
                                     handleUserClick={handleUserClick}
                                     selectedUser={selectedUser}
                                 />
@@ -325,6 +338,7 @@ export default function Homepage() {
                                         chatMess={chatMess}
                                         groupName={groupName}
                                         userType={userType}
+                                        listUserChatRoom ={listUserChatRoom}
                                     />
                                     <InputMess
                                         handleSendMessage={handleSendMessage}
