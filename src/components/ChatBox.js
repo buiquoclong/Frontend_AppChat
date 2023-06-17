@@ -1,10 +1,11 @@
 import "../css/ChatBox.css";
-import React, {useRef, useEffect} from "react";
+import React, {useRef,useState, useEffect} from "react";
 import {formatDate} from "./Forrmat";
 
 
-export default function ChatBox({chatMess, groupName, userType}) {
+export default function ChatBox({chatMess, groupName, userType, listUserChatRoom}) {
     const chatBoxRef = useRef(null);
+    const [showPopup, setShowPopup] = useState(false); // State để kiểm soát hiển thị popup
 
     useEffect(() => {
         if (chatBoxRef.current) {
@@ -18,7 +19,13 @@ export default function ChatBox({chatMess, groupName, userType}) {
         const url = event.target.getAttribute("href");
         window.open(url, "_blank");
     };
+    const handleOpenPopup = () => {
+        setShowPopup(true);
+    };
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
     // Sắp xếp tin nhắn theo thời gian tăng dần
     if (!chatMess || !Array.isArray(chatMess)) {
         return null;
@@ -56,6 +63,7 @@ export default function ChatBox({chatMess, groupName, userType}) {
                     <i className="fas fa-magnifying-glass"></i>
                     <i className="fa-solid fa-phone"></i>
                     <i className="fa-solid fa-video"></i>
+                    <i className="fa-solid fa-ellipsis" onClick={handleOpenPopup}></i>
                 </div>
             </div>
 
@@ -165,6 +173,53 @@ export default function ChatBox({chatMess, groupName, userType}) {
                     ))}
                 </ul>
             </div>
+            {showPopup && (
+                <div className="popup">
+
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header" style={{borderBottom: "2px solid #c6c6c6"}}>
+                                    <h5 className="modal-title">Thông tin phòng chat</h5>
+                                </div>
+                                <div className="modal-body" style={{overflowY: "scroll", scrollBehavior: "smooth",width: "300px", height: "350px"}}>
+                                    <div className="infoGroup">
+                                        {userType === 0 ? (
+                                            <img
+                                                src="https://png.pngtree.com/png-clipart/20190921/original/pngtree-user-avatar-boy-png-image_4693645.jpg"
+                                                alt="Group Avatar"
+                                                style={{borderRadius: "50%", width: "100px", height: "100px", border: "5px solid black"}}
+                                            />
+                                        ) : (
+                                            <img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuUmw3aSVt9u_Bw-kMMa2t4bv_E-YRFqZ9vg&usqp=CAU"
+                                                alt="Group Avatar"
+                                                style={{borderRadius: "50%", width: "100px", height: "100px", border: "5px solid black"}}
+                                            />
+                                        )}
+
+                                        <h2 className="group-name" style={{textAlign: "center", paddingTop: "20px"}}>{groupName}</h2>
+                                    </div>
+
+                                    <p className="ml-20">Danh sách các thành viên:</p>
+                                    {userType === 1 && (
+                                        <>
+                                                {listUserChatRoom.map((user) => (
+                                                    <p key={user.id} className="modal-listuser" style={{textAlign: "center"}}>{user.name}</p>
+                                                ))}
+                                        </>
+                                    )}
+                                </div>
+                                <div className="modal-footer" style={{borderTop: "2px solid #c6c6c6"}}>
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal"
+                                            onClick={handleClosePopup}>Đóng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+
+            )}
         </>
     );
 }

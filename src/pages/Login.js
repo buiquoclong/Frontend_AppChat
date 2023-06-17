@@ -11,7 +11,7 @@ const Login = () => {
     const [passwordTouched, setPasswordTouched] = useState(false);
     const [notification, setNotification] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
-    const [userList, setUserList] = useState([]);
+    const [listUser, setListUser] = useState([]);
 
     // const history = createBrowserHistory();
     const history = useHistory();
@@ -61,9 +61,9 @@ const Login = () => {
             }
             if (response.status === 'success' && response.event === 'GET_USER_LIST') {
                 const users = response.data;
-                setUserList(users);
+                setListUser(users);
 
-                history.push('/homepage', {userList: users, setUserList: setUserList});
+                // history.push('/homepage', {listUser: users, setListUser: setListUser});
 
 
             }
@@ -87,7 +87,7 @@ const Login = () => {
                 const response = JSON.parse(event.data);
                 if (response.status === 'success' && response.event === 'GET_USER_LIST') {
                     const users = response.data;
-                    setUserList(users);
+                    setListUser(users);
                     console.log("Đã lưu vào users", users);
                 }
                 if (responseData && responseData.status === "success") {
