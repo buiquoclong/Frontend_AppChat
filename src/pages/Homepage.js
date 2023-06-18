@@ -21,6 +21,7 @@ export default function Homepage() {
     const [isChatVisible, setIsChatVisible] = useState(true);
     const [roomName, setRoomName] = useState("");
     const [listUserChatRoom, setListUserChatRoom] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null);
     const history = useHistory();
 
 
@@ -77,7 +78,6 @@ export default function Homepage() {
         console.log(userName);
         if (type == 1) {
             setTypeSend("room");
-            console.log("đã biết type = 1 và user là " + userName)
             const requestRoomChatMess = {
                 action: "onchat",
                 data: {
@@ -92,7 +92,6 @@ export default function Homepage() {
             console.log("Đã gửi yêu cầu get room chat mes");
         } else {
             setTypeSend("people");
-            console.log("đã biết type = 1 và user là " + userName)
             const requestRoomChatMess = {
                 action: "onchat",
                 data: {
@@ -104,7 +103,6 @@ export default function Homepage() {
                 },
             };
             socket.send(JSON.stringify(requestRoomChatMess));
-            console.log("Đã gửi yêu cầu get people chat mes");
         }
     }
 
@@ -119,7 +117,6 @@ export default function Homepage() {
             },
         };
         socket.send(JSON.stringify(requestcreateRoom));
-        console.log("Đã gửi yêu cầu ");
         const userList = {
             action: 'onchat',
             data: {
