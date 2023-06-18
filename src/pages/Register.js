@@ -64,47 +64,49 @@ const Register = () => {
         setPasswordTouched(true);
     };
     return (
-        <div className="row">
-            <div className="offset-lg-3 col-lg-6">
+
+        <div className="center-content" style={{display:"flex", justifyContent: "center", alignItems:"center",height: "100vh", background: "#f0f2f5" }}>
+
+            <div className="login-container">
                 <form className="container" onSubmit={handleSubmit}>
-                    <div className="card">
-                        <div className="card-header">
-                            <h2>Đăng ký</h2>
+                    <div className="login-content row">
+                        <div className="col-12 text-center login-title">Đăng ký</div>
+                        <div className="col-12 form-group magrin-input">
+                            <label>Tài khoản: </label>
+                            <input
+                                value={username}
+                                type="text"
+                                className="login-input "
+                                placeholder="Tên đăng nhập"
+                                onChange={(e) => setUsername(e.target.value)}
+                                onBlur={handleUserBlur}
+                            />
                         </div>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label>Tên đăng nhập</label>
-                                <input
-                                    className="form-control"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    onBlur={handleUserBlur}
-                                />
-                                {usernameTouched && username.trim() === '' && (
-                                    <p className="text-danger">Vui lòng nhập tên đăng nhập</p>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label>Mật khẩu</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    onBlur={handlePassBlur}
-                                />
-                                {passwordTouched && password.trim() === '' && (
-                                    <p className="text-danger">Vui lòng nhập mật khẩu</p>
-                                )}
-                            </div>
+                        {usernameTouched && username.trim() === '' && (
+                            <p className="text-danger noti">Vui lòng nhập tên đăng nhập</p>
+                        )}
+                        <div className="col-12 form-group magrin-input " >
+                            <label>Mật khẩu: </label>
+                            <input
+                                value={password}
+                                type="password"
+                                className="login-input "
+                                placeholder="Mật khẩu"
+                                onChange={(e) => setPassword(e.target.value)}
+                                onBlur={handlePassBlur}
+                            />
                         </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">
+
+                        {passwordTouched && password.trim() === '' && (
+                            <p className="text-danger noti">Vui lòng nhập mật khẩu</p>
+                        )}
+                        <div className="col-12" style={{paddingTop: "20px"}}>
+                            <button className="btn-login btlogin" >
                                 Đăng ký
                             </button>
-                            <a href="/" className="btn btn-link">
-                                Trở lại
-                            </a>
+                        </div>
+                        <div className="col-12 register">
+                            <p>Bạn đã có tài khoản? <a href="/" className="">Đăng nhập!</a></p>
                         </div>
                     </div>
                 </form>
@@ -112,6 +114,9 @@ const Register = () => {
                     <div className="alert alert-info mt-3">{notification}</div>
                 )}
             </div>
+
+
+
         </div>
     );
 }

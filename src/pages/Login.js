@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from "react";
-import {createBrowserHistory} from 'history';
 import {useHistory} from "react-router-dom";
+import "../css/Login.css"
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const [socket, setSocket] = useState(null);
     const [usernameTouched, setUsernameTouched] = useState(false);
     const [passwordTouched, setPasswordTouched] = useState(false);
     const [notification, setNotification] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
-    const [listUser, setListUser] = useState([]);
 
     // const history = createBrowserHistory();
     const history = useHistory();
@@ -59,14 +57,6 @@ const Login = () => {
                     setNotification('Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!');
                 }
             }
-            if (response.status === 'success' && response.event === 'GET_USER_LIST') {
-                const users = response.data;
-                setListUser(users);
-
-                // history.push('/homepage', {listUser: users, setListUser: setListUser});
-
-
-            }
 
         }
 
@@ -83,17 +73,11 @@ const Login = () => {
 
         if (socket) {
             socket.onmessage = (event) => {
-                const responseData = JSON.parse(event.data);
                 const response = JSON.parse(event.data);
-                if (response.status === 'success' && response.event === 'GET_USER_LIST') {
-                    const users = response.data;
-                    setListUser(users);
-                    console.log("Đã lưu vào users", users);
-                }
-                if (responseData && responseData.status === "success") {
+                if (response && response.status === "success") {
                     // Đăng nhập thành công
                     // Lưu trữ re_login_code
-                    sessionStorage.setItem('re_login_code', responseData.data["RE_LOGIN_CODE"]);
+                    sessionStorage.setItem('re_login_code', response.data["RE_LOGIN_CODE"]);
                 }
             };
         }
@@ -112,54 +96,63 @@ const Login = () => {
         setPasswordTouched(true);
     };
     return (
-        <div className="row">
-            <div className="offset-lg-3 col-lg-6">
-                <form className="container" onSubmit={handleSubmit}>
-                    <div className="card">
-                        <div className="card-header">
-                            <h2>Đăng nhập</h2>
+
+        <div className="center-content" style={{display:"flex", justifyContent: "center", alignItems:"center",height: "100vh", background: "#f0f2f5" }}>
+
+                <div className="login-container">
+                    <form className="container" onSubmit={handleSubmit}>
+                    <div className="login-content row">
+                        <div className="col-12 text-center login-title">Đăng nhập</div>
+                        <div className="col-12 form-group magrin-input">
+                            <label>Tài khoản: </label>
+                            <input
+                                value={username}
+                                type="text"
+                                className="login-input "
+                                placeholder="Tên đăng nhập"
+                                onChange={(e) => setUsername(e.target.value)}
+                                onBlur={handleUserBlur}
+                            />
                         </div>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label>Tên đăng nhập</label>
-                                <input
-                                    className="form-control"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    onBlur={handleUserBlur}
-                                />
-                                {usernameTouched && username.trim() === '' && (
-                                    <p className="text-danger">Vui lòng nhập tên đăng nhập</p>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label>Mật khẩu</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    onBlur={handlePassBlur}
-                                />
-                                {passwordTouched && password.trim() === '' && (
-                                    <p className="text-danger">Vui lòng nhập mật khẩu</p>
-                                )}
-                            </div>
+                        {usernameTouched && username.trim() === '' && (
+                            <p className="text-danger noti">Vui lòng nhập tên đăng nhập</p>
+                        )}
+                        <div className="col-12 form-group magrin-input " >
+                            <label>Mật khẩu: </label>
+                            <input
+                                value={password}
+                                type="password"
+                                className="login-input "
+                                placeholder="Mật khẩu"
+                                onChange={(e) => setPassword(e.target.value)}
+                                onBlur={handlePassBlur}
+                            />
                         </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">
+
+                        {passwordTouched && password.trim() === '' && (
+                            <p className="text-danger noti">Vui lòng nhập mật khẩu</p>
+                        )}
+                        <div className="col-12" style={{paddingTop: "20px"}}>
+                            <button onClick={() => handleLogin()} className="btn-login btlogin" >
                                 Đăng nhập
                             </button>
-                            <a href="/register" className="btn btn-link">Đăng ký</a>
+                        </div>
+                        <div className="col-12 register">
+                            <p>Bạn chưa có tài khoản? <a href="/register" className="">Đăng ký ngay!</a></p>
                         </div>
                     </div>
-                </form>
-                {notification && (
-                    <div className="alert alert-info mt-3">{notification}</div>
-                )}
-            </div>
+                    </form>
+                    {notification && (
+                        <div className="alert alert-info mt-3">{notification}</div>
+                    )}
+                </div>
+
+
+
         </div>
     );
+
+
 };
 
 export default Login;
