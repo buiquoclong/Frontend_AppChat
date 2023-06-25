@@ -17,7 +17,7 @@ export default function Room({handleJoinRoom, handleCreateRoom, handleSearchRoom
     }
     function CreateRoomClick() {
         if (roomName !== "") {
-            handleCreateRoom(roomName); // Truyền giá trị message vào hàm handleSendMessage
+            handleCreateRoom(roomName);
             setRoomName('');
         }
 

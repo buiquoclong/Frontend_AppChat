@@ -14,14 +14,8 @@ export default function Navbar(props) {
             },
         };
         history.push("/");
-        localStorage.clear();
+        sessionStorage.clear();
     };
-    useEffect(() => {
-
-        localStorage.removeItem('username');
-        localStorage.removeItem('password');
-
-    }, []);
 
     return (
         <>
