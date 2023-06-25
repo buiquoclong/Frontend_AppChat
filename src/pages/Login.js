@@ -51,7 +51,6 @@ const Login = () => {
                 if (response.status === 'success') {
                     sessionStorage.setItem('re_login_code', response.data["RE_LOGIN_CODE"]);
                     setLoginSuccess(true);
-                    setNotification('Đăng nhập thành công!');
                     window.location.href = '/homepage'
                 } else {
                     setNotification('Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!');
